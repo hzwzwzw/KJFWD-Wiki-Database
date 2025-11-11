@@ -2,10 +2,10 @@
 title: 9.科技服务队Wiki维护指南
 description: 教会你如何领取任务，写写稿子，赚小钱钱
 published: true
-date: 2025-11-11T00:00:00.000Z
+date: 2025-11-11T14:41:05.871Z
 tags: 指南
 editor: markdown
-dateCreated: 2022-11-10T18:04:30.521Z
+dateCreated: 2025-11-11T12:35:29.703Z
 ---
 
 > ⚠️ **本文档正在等待更新**
@@ -77,4 +77,4 @@ dateCreated: 2022-11-10T18:04:30.521Z
 > 请不要随意删除或修改其他文档的内容，一经发现将会严肃处理！
 {.is-danger}
 
-其他问题请联系[方文昊](mailto:fwh20@mails.tsinghua.edu.cn)：fwh20@mails.tsinghua.edu.cn
+其他问题请联系
