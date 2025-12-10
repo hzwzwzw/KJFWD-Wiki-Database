@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  # PostgreSQL 数据库
+  db:
+    image: postgres:15-alpine
+    container_name: kjfwd-wiki-db
+    environment:
+      POSTGRES_DB: wiki
+      POSTGRES_USER: wikijs
+      POSTGRES_PASSWORD: wikijsrocks
+    logging:
+      driver: "none"
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - wiki-network
+
+  # Wiki.js 应用
+  wiki:
+    image: ghcr.io/requarks/wiki:2
+    container_name: kjfwd-wiki
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: wikijs
+      DB_PASS: wikijsrocks
+      DB_NAME: wiki
+      # 可选：设置管理员邮箱
+      # ADMIN_EMAIL: admin@example.com
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      # Wiki.js 数据目录
+      - wiki-data:/wiki/data
+      # 挂载当前 wiki 内容（可选，用于初始化）
+      - ./:/wiki/repo:ro
+    networks:
+      - wiki-network
+
+volumes:
+  db-data:
+  wiki-data:
+
+networks:
+  wiki-network:
+    driver: bridge
