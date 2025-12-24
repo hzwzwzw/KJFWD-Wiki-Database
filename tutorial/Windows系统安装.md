@@ -2,7 +2,7 @@
 ## 前言
 ~~修复一个系统问题往往分为递进的三步，重启解决90%的问题、重装解决99%的问题、重买解决100%的问题（确信）。~~
 
-Windows系统在经过长期使用后，可能会出现各种问题，如系统变慢、蓝屏死机，注册表错误，分区损坏等等，并且完美修复极为困难，因而重新安装系统往往是最有效的解决方案。
+Windows系统在使用中可能会出现各种问题，如蓝屏报错，注册表错误，系统损坏等等，并且完美修复极为困难，而重新安装系统往往是最有效的解决方案。
 
 本文档将指导您如何在Windows系统上进行全新安装，由于笔者个人使用习惯，本文档主要以Windows 11为例进行说明，但大部分步骤也适用于其他版本的Windows系统。
 
@@ -12,25 +12,25 @@ Windows系统在经过长期使用后，可能会出现各种问题，如系统�
     在重新安装系统之前，务必备份重要的文件和数据。可以将数据复制到外部硬盘、U盘或云存储服务中。
 2. **释放镜像文件**
 
-    下载所需的Windows系统镜像文件（ISO格式）。可以从微软官方网站或其他可信赖的来源获取。
+    下载所需的Windows系统镜像文件（ISO格式）。可以从微软官方网站或其他可信赖的来源获取。在科服工作时，你可以直接使用装机盘中的镜像。
 3. **新系统配置**
 
-    进行新系统的配置，包括选择语言、激活系统、安装驱动等。
+    进行新系统的配置，包括OOBE配置、激活系统、安装驱动等。
 
 接下来，本文档将详细介绍每个步骤。
 
 ## 1. 重装之前
 
 ### 重要、重要、重要！
-DiskGenuis告诉我们：**数据无价，谨慎操作**
+
+**数据无价，谨慎操作**
 
 首先，必须与客户进行协商，动文件、格式化之前务必与客户确认已经备份。
 
-其次，操作时务必注意硬盘、分区是否正确，是否已经解锁**Bitlocker**
+其次，操作时务必注意选择的硬盘、分区是否正确，是否已经解锁数据分区的**Bitlocker**
 
 最后，不要轻信教程 or AI，务必确认每一步操作的正确性。
 
-    Bitlocker!!!
 <img src="Windows/image.png" alt="alt text" width="480" style="max-width:100%; height:auto; display:block; margin:0 auto;" />
 
 
@@ -42,14 +42,12 @@ DiskGenuis告诉我们：**数据无价，谨慎操作**
 - C盘空间不足：扩容、清理磁盘、卸载不必要的软件，删除缓存，或者使用磁盘清理工具。
 - 更换硬盘：系统迁移、克隆硬盘。
 - 网络、声音、摄像头等驱动问题：更新或重新安装相关驱动程序。
-- 系统密码忘记：联网客户可以通过微软账户重置密码，离线客户可以使用PE清除密码。
+- 系统密码忘记：联网用户可以通过微软账户重置密码，离线用户可以使用PE清除密码。
 - 无法开机：使用Windows自带的修复工具，或者通过PE中Dism++等工具修复系统文件。
-- Solidworks等大型软件无法安装：可能有一些网络上的偏方可以尝试，但是往往还是要靠重装系统。
+- 专业软件（如SolidWorks等）无法安装：可能有一些网络上的偏方可以尝试，但是往往还是要靠重装系统。
 
 ### 备份数据
-重装系统前，务必提醒客户备份重要数据。如果进不去系统，就通过PE进行数据备份，同时在WinPE中解除Bitlocker加密（如果有的话）。
-
-    BitLokcer！
+重装系统前，务必提醒客户备份重要数据。若进不去系统，可以通过PE进行数据备份（对于有Bitlocker加密的设备，需要在 https://aka.ms/myrecoverykey 获取恢复密钥）。
 
 要备份的数据，主要是将系统盘数据（Windows安装分区）备份到其他分区或者外置的硬盘、U盘、云存储等外置存储介质。
 
@@ -57,11 +55,11 @@ DiskGenuis告诉我们：**数据无价，谨慎操作**
 ```
 默认微信文件路径：（%USERPROFILE%\Documents\WeChat Files）
 ```
-如客户文件夹或者桌面文件夹已经移动到其他分区，则无需重复备份
+如客户文件夹或者桌面文件夹已经移动到其他分区，则无需重复备份（但旧的用户目录绑定无法在新系统生效，需要后续手动迁移）。
 
-**保留个人文件**
+#### 保留个人文件
 
-偶尔，我们会在进行Windows系统重置时勾选上“保留个人文件”选项来重装系统，该选项会在重装系统时保留客户的个人文件（如桌面、文档、图片等），但会删除已安装的软件和系统设置。即使如此，仍然建议客户备份重要数据，以防万一。
+如果使用Windows系统重置/Inplace upgrade等方式安装系统，安装程序可能会提供“保留个人文件”的选项，该选项会在重装系统时保留客户的个人文件（如桌面、文档、图片等），但会删除已安装的软件和系统设置。同时，Windows在安装到已有系统且未格式化的分区时，也会自动将系统内文件迁移到Windows.old目录。但即使如此，仍然建议客户手动备份重要数据，以防万一。
 
 ## 重新安装系统
 
@@ -71,30 +69,29 @@ DiskGenuis告诉我们：**数据无价，谨慎操作**
 
 1. 打开“设置”应用，导航到“隐私与安全性“-“设备加密”，确保Bitlocker已关闭。
 
-2. 解密完成后，导航到“Windows更新”-“
-高级选项”-“恢复”-”重置此电脑“
+2. 解密完成后，导航到“Windows更新”-“高级选项”-“恢复”-”重置此电脑“
 
 3. 进行一系列设置后，Windows系统将会自动重新安装。
 
-#### 对一些重置选项进行说明：
+#### 重置选项说明
 
 保留我的文件：删除应用和设置，但保留个人文件。
 
 删除所有内容：删除所有个人文件、应用和设置。
-![alt text](/Windows/image-1.png)
+![](Windows/image-1.png)
 
 点击更改设置后，可以对重置选项进行进一步的配置：
-![alt text](/Windows/image-2.png)
+![](Windows/image-2.png)
 
 清理数据：建议勾选清理数据，可以彻底清理系统问题。
 
 删除所有驱动器文件：字面意思，勾选后会删除所有分区的数据，慎用。
 
-![alt text](/Windows/image-3.png)
+![](Windows/image-3.png)
 
 准备就绪后，确认各项设置，点击“重置”按钮，系统将会自动进行重装。
 
-![alt text](/Windows/image-4.png)
+![](Windows/image-4.png)
 
 #### 通过WinRE重置系统
 
@@ -104,9 +101,10 @@ DiskGenuis告诉我们：**数据无价，谨慎操作**
 
 在WinRE（蓝屏）环境下，选择高级选项-疑难解答-重置此电脑，之后的步骤与上述类似，一般这种方法用到的不多。
 
-![alt text](/Windows/image-8.png)
+![](Windows/image-8.png)
 
 #### 系统内覆盖安装
+
 Media Creation Tool是微软官方提供的一个工具，可以帮助客户下载最新的Windows系统镜像，并创建可启动的安装介质（如U盘或DVD）。
 
 https://www.microsoft.com/zh-cn/software-download/windows11
@@ -115,9 +113,9 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
 友情提醒：**微软的服务器非常慢，所以不如直接上PE**
 
-![alt text](/Windows/image-9.png)
+![](Windows/image-9.png)
 
-![alt text](/Windows/image-10.png)
+![](Windows/image-10.png)
 
 
 ### 方式2：使用安装媒体重新安装系统
@@ -130,7 +128,7 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
 在科技服务队，有着许许多多的Windows装机盘，制作一块Ventoy or Rufus装机盘也是很简单的事情，因而重装系统最方便的方式就是使用U盘引导安装。
 
-在这里要说明，笔者没有试过在有bitlocker加密的硬盘上重装系统的情况，这种操作是有丢失数据的风险的，如果硬盘上的数据确认不需要，可以直接进行重装，否则请务必先解除Bitlocker加密。
+**在有bitlocker加密的硬盘上重装系统，会导致加密分区无法自动解锁**。如果硬盘上的数据确认不需要，可以直接进行重装，否则请务必先解除Bitlocker加密，或确认能够在微软账户中找到恢复密钥、在重装系统后输入以启动自动解锁。
 
 1. **BIOS界面**
 
@@ -139,23 +137,23 @@ https://www.microsoft.com/zh-cn/software-download/windows11
     随后在BIOS中修改启动项，按需求关闭Secure Boot，将“USB Device”或U盘名称移至首位（可能包含U盘品牌字样），随后保存设置并退出BIOS。
     
     （图源：https://blog.csdn.net/m0_72028202/article/details/143276086）
-    ![alt text](/Windows/image-5.png)
-    ![alt text](/Windows/image-6.png)
-    ![alt text](/Windows/image-7.png)
+    ![](Windows/image-5.png)
+    ![](Windows/image-6.png)
+    ![](Windows/image-7.png)
 
 2. **U盘引导**
 
     重启之后，电脑将会从U盘启动，进入Windows安装界面。选择需要安装的Windows 11镜像（通常是64位中文版）,随后选择 Boot In Normal Mode 进入安装程序。
     
-    当然，也可以按需求安装Win10、Win8、Win7、~~WinXP、Win Vista~~
-    ![alt text](/Windows/image-13.png)
-    ![alt text](/Windows/image-14.png)
+    当然，也可以按需求安装Win10、~~Win8、Win7、WinXP、Win Vista~~
+    ![](Windows/image-13.png)
+    ![](Windows/image-14.png)
 3. **安装过程**(没有出现的步骤可以跳过)
    
 - 选择语言、时间和键盘布局，点击“下一步”。
 - 选择重新安装Windows 11
 - 输入产品密钥（如果有），或者选择“我没有产品密钥”以后再激活。
-  ![alt text](/Windows/image-15.png)
+  ![](Windows/image-15.png)
 - 选择Windows版本（如果适用），点击“下一步”。
   
      不同版本之间的区别？
@@ -170,34 +168,38 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     一般来说，在原有的系统分区上进行安装即可。选中该磁盘，对目标磁盘进行删除分区、格式化分区操作后，点击“下一步”进行安装。
 
-    ![alt text](/Windows/image-16.png)
+    ![](Windows/image-16.png)
 
 - 安装程序将会进行安装，耐心等待即可。
 
 4. **完成安装**
 
     进入桌面前的最后一步，完成一些账户设置。包括输入法、设备名称、账户名、密码等。
+    
+    > 不建议在此处设置密码，OOBE会要求设置密保问题，非常麻烦。
 
     联网有可能会触发自动更新，建议断网，完成系统安装后再进行联网。
 
+    > 在当前镜像下，可以通过按下`shift+f10`进入命令提示符，输入`oobe\bypassnro`跳过联网。
+
     无论是设备名还是账户名，均推荐客户使用英文，以避免一些软件对中文名的兼容性问题。
 
-    ![alt text](/Windows/image-17.png)
+    ![](Windows/image-17.png)
 
 5. **重装之后**
    
     成功进入系统后，我们还需要为客户进行一系列的后续工作。
 - 安装驱动程序
 
-    在设备管理器中检查是否有缺失的驱动程序（通常会显示为黄色感叹号），并安装相应的驱动程序。记得打开系统还原，以防万一。
+    在设备管理器中检查是否有缺失的驱动程序（通常会显示为黄色感叹号），并安装相应的驱动程序。
 
     对于笔记本，有网卡驱动后，可以通过Windows Update进行自动更新，安装大部分驱动。
 
         当无法联网的时候，可以通过如下方案来解决：
-        1.确认电脑型号，队员代为下载官网驱动，U盘拷贝安装。
-        2.若有队员下载过完整版Snappy Driver Installer (SDI)，可采用该软件离线安装。（仅安装网卡驱动即可）
-        3.采用有线网络连接。（部分电脑可能需要USB-网口转换器）
-    对于特定的机型，可以到官网下载安装相应的驱动程序。
+        1. 装机盘中有完整版Snappy Driver Installer (SDI)，可采用该软件离线安装。（仅安装网卡驱动即可）
+        2. 确认电脑型号，队员代为下载官网驱动，U盘拷贝安装。
+        3. 采用有线网络连接。（部分电脑可能需要USB-网口转换器）
+    对于特定的机型，可以到官网下载安装相应的驱动程序。例如：
         
         联想:https://newsupport.lenovo.com.cn/driveDownloads_index.html
         Dell:https://www.dell.com/support/home/zh-cn?app=drivers
@@ -206,20 +208,18 @@ https://www.microsoft.com/zh-cn/software-download/windows11
     
     清华大学信息化客户服务平台提供了[Windows 10]和[Windows 11]的激活脚本，可按照操作说明进行激活。[官网传送门,请选择”公共软件“](https://its.tsinghua.edu.cn/)
 
-        大部分笔记本电脑预装了家庭版的数字许可证，可以直接联网自动激活。
-
-        当然，你也可以使用MassGrave等工具进行激活，或者上网找一个激活码(bushi)
+        大部分笔记本电脑预装了家庭版的数字许可证，联网后会自动激活。
 
     ~~也可以和GPT聊聊自己外婆的故事，说不定它会给你一个激活码~~
-    ![alt text](/Windows/image-19.png)
+    ![](Windows/image-19.png)
 - 更改时间服务器：
 
     建议更改时间服务器，使用清华大学TUNA协会提供的NTP
 
         [控制面板] - [日期和时间] - [Internet时间] - [更改设置] - 输入 ntp.tuna.tsinghua.edu.cn - [立即更新] - [确定]
-    ![alt text](/Windows/image-18.png)
+    ![](Windows/image-18.png)
 
-- 登录微软账户
+- 若有需求，登录微软账户。
 
 - 其他软件安装、系统优化等。
 
@@ -230,7 +230,7 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
 
 进不去系统时，可以使用WinPE进行调试、修复，主要是使用Dism++与DiskGenuis两个软件来进行系统重装与分区管理。
 
-同时，使用WinPE也可以使用Windows 里能用的多数东西，如资源管理器、图吧工具箱等等，其中自然也可以**解除Bitlocker加密**。
+同时，使用WinPE也可以使用Windows 里能用的多数东西，如资源管理器、图吧工具箱等等。
 
 在进入WinPE后，主要步骤如下：
 1. 重装之前：
@@ -243,11 +243,10 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
             在进入WinPE后，打开DiskGenuis，确认目标磁盘内文件是否已经备份，随后对磁盘分区进行删除、格式化，以准备安装新的系统。
             同样的，DiskGenuis也可以把新买来的硬盘进行分区，完成系统迁移等操作，也可以扩容磁盘。
             （等待一个DiskGenuis使用教程，好让我超链接过去）
-            进入DiskGenuis时，如果是旧硬盘的系统盘，应该前面有两个小分区，分别是EFI分区和MSR分区，之后才是主要的Windows安装分区，后面可能还有一个恢复分区。
-            将这几个分区（EFI、MSR，原来的系统盘）全部删除，磁盘就会显示为空闲，其后的操作就和新硬盘一样了。
-            当然，如果你清楚自己在做什么的话，也可以只格式化Windows安装分区，保留引导分区并且通过映像文件安装。
-            或者可以不格式化Windows分区直接安装，旧数据会被保存到Windows.old中
-        ![alt text](/Windows/image-20.png)
+            进入DiskGenuis时，如果是旧硬盘的系统盘，应该前面有两个小分区，分别是EFI分区和MSR分区，之后才是主要的Windows安装分区、数据分区，后面可能还有一个恢复分区。
+            通常，我们只格式化Windows安装分区，可选格式化EFI引导分区。
+            或者可以不格式化Windows分区直接安装，旧数据会被保存到Windows.old中（许多客户的C盘空间很紧张，不建议这么做）。
+        ![](Windows/image-20.png)
 
             在格式化分区后，右键点击未分配的磁盘空间，选择“建立新分区”。如果是新硬盘，还可以指定系统分区的大小，以按照客户的需求进行分区。
             操作结束后，保存更改，格式化分区即可。
@@ -255,10 +254,10 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
    - 使用Dism++进行系统重装
   
             打开Dism++，选择"恢复功能"-"系统还原"选项卡，弹出“释放镜像”窗口。通过浏览挂载所需要的映像和要安装的版本。
-        ![alt text](/Windows/image-22.png)
+        ![](Windows/image-22.png)
         
-            通过浏览，选择目标分区（刚刚用DiskGenuis格式化的分区），选择“添加引导”和“格式化”选项（必须），点击“确定”按钮，
-        ![alt text](/Windows/image-23.png)
+            通过浏览，选择目标分区（刚刚用DiskGenuis格式化的分区），选择“添加引导”（必须）和“格式化”选项，点击“确定”按钮，
+        ![](Windows/image-23.png)
 
         系统将会开始释放镜像，耐心等待即可。
   
@@ -274,30 +273,30 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
 
 此处，放上hzw同学总结的一图流：
 
-![alt text](/Windows/image-25.png)
+![](Windows/image-25.png)
 
-## 常见BUG指引：
+## 常见问题指引：
+
 - 无法关闭Secure Boot：
 
         新的Ventoy启动盘已经支持Secure Boot，但需按照官网教程(https://www.ventoy.net/cn/doc_secure.html)操作，才能正常引导U盘。
 
 - RST问题
 
-        如果遇到无法识别硬盘，或者新系统蓝屏Inaccessible boot device的问题，可能是由于Intel RST（Rapid Storage Technology）引起的。RST是一种存储技术，但有时会导致系统无法正确识别硬盘，尤其是当驱动丢失的时候。
+        如果遇到无法识别硬盘，或者新系统蓝屏Inaccessible boot device的问题，可能是由于Intel RST（Rapid Storage Technology）引起的。RST是一种存储技术，但需要特定的控制器驱动且Windows并不自带，因而会导致系统无法正确识别硬盘。
 
         解决方法：
         1. 进入BIOS，找到SATA模式设置，将其从RAID或RST模式更改为AHCI模式。
         2. 使用安装程序安装系统时，手动加载RST 驱动
         3. 使用较新的PE安装系统，且在安装后注入RST 驱动
-        RST驱动下载地址：https://www.intel.cn/content/www/cn/zh/download-center/home.html
-    ![alt text](/Windows/image-24.png)
+        RST驱动下载地址：https://www.intel.cn/content/www/cn/zh/download-center/home.html。装机盘中已有此驱动（极少数机型会使用老的Optane驱动，如果遇到安装了我们的驱动而仍无法读到硬盘/进入系统的情况，请从机型官网下载驱动）。
+    ![](Windows/image-24.png)
 
 - Bitlocker问题
 
         如果硬盘启用了Bitlocker加密，建议在重装系统前先解除Bitlocker加密，以避免数据丢失的风险。
-        命令行关闭（管理员）：manage-bde –off C:
-        如果没有关闭BitLocker，那么在重装系统后，会遇到需要秘钥才能访问硬盘的情况，这个时候就要考验客户平时使用电脑的习惯了。
-        如果客户忘记了自己的Bitlocker密钥，如果他记得自己微软账户的邮箱的话，那么可以通过微软账户找回：account.microsoft.com/devices/recoverykey
+        命令行关闭（管理员）：manage-bde –off C:（其余分区同理，请全部关闭）。也可以直接在系统设置中搜索“设备加密”（Win11）或“Bitlocker”（Win10）关闭。
+        如果没有关闭BitLocker，那么在重装系统后，会遇到需要密钥才能访问硬盘的情况。如果客户不知道自己的Bitlocker密钥，但此前登录了微软账户，那么可以通过微软账户找回：account.microsoft.com/devices/recoverykey
 
 - Windows11专属问题
 
