@@ -367,7 +367,7 @@ Linux 内核相当于是：
 
 ---
 
-iii. 更改启动顺序（Change Boot Order）  
+### 更改启动顺序（Change Boot Order）  
 在Boot选项中，将科服U盘提到最上面（选中启动项并按F5、F6来上下移动）  
 最终呈现结果：
 
