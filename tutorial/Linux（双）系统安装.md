@@ -150,8 +150,7 @@ Linux 内核相当于是：
 
 **结论一句话：**
 
-> WSL2 不是 Linux 桌面解决方案，  
-> 它只是一个“能跑 Linux 命令的环境”。
+> WSL2 不是 Linux 桌面解决方案，它只是一个“能跑 Linux 命令的环境”。
 
 ---
 
@@ -213,13 +212,7 @@ Linux 内核相当于是：
 
 在 [TUNA](https://mirrors.tuna.tsinghua.edu.cn "TUNA 清华大学开源软件镜像站") 的「常用发行版 ISO 和应用软件安装包直接下载」可以找到 Ubuntu 的 ISO（<https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases> ）。
 
-## Ubuntu 镜像列表（示例）
-
-Ubuntu：
-
-- 25.04 (arm64+raspi, Preinstalled Desktop)
-
-> 以上不是 LTS，忽略。
+## Ubuntu 镜像
 
 ### 24.04.3 系列（当前 LTS）
 
@@ -252,7 +245,7 @@ Ubuntu：
   ```
 
   >输出示例：6.14.0-36-generic
-  
+
   如何判断是不是 HWE 内核：
 
   Ubuntu 24.04 默认 GA 内核是 6.8.x
@@ -264,7 +257,7 @@ Ubuntu：
 - **2024.04 以后新出的电脑**：  
   只能靠 HWE 碰运气，运气再差点，甚至要 mainline kernel 才有驱动。
 
-  >如何升级到 HWE 内核（需要联网）：
+  如何升级到 HWE 内核（需要联网）：
 
   ```bash
   sudo apt update
@@ -290,11 +283,8 @@ Ubuntu：
 可以把 ISO 拷贝进 PE 盘备用；  
 当然，也可以用 `dd` / Rufus 之类的工具，**直接把 ISO 写进 U 盘** 做启动盘。
 
-### 对于装Ubuntu22和24，你只需要从科服一号柜拿出蓝色或黑色U盘即可，该款U盘有type-c和USB-A双头接口
+> 对于装Ubuntu22和24，你只需要从科服一号柜拿出蓝色或黑色U盘即可，该款U盘有type-c和USB-A双头接口
 
-### 安装Linux系统需要先关闭RST，由于关闭RST可能导致Windows无法启动，所以要现在Windows中开启安全模式，具体操作步骤如下：
-
-在Windows中，按下Win+R，输入msconfig，回车，选择引导选项卡，勾选安全引导，点击应用，重启电脑进入BIOS，关闭RST，保存退出后，电脑会自动进入Windows安全模式，之后再打开msconfig，取消勾选安全引导，点击应用，重启电脑即可正常进入Windows系统。
 
 ## BIOS设置
 
@@ -302,7 +292,7 @@ Ubuntu：
 
 首先查看客户的个人微机，判定其使用的品牌型号，查找在开机时按什么按键进入BIOS设置选项
 
-## 各 OEM 笔记本进入 BIOS / 启动菜单的按键速查表
+## 各 OEM 笔记本进入 BIOS / 启动菜单按键速查表
 
 > 进入 BIOS 的时机：**开机后、系统启动前，不停连按**（不是长按）
 
@@ -324,22 +314,27 @@ Ubuntu：
 | **神舟 HASEE** | `F2` / `Del` | `F7` / `F12` | 主板差异大 |
 | **机械革命** | `F2` | `F12` | |
 | **雷神 / 未来人类** | `F2` | `F12` | 模具机居多 |
-| **七彩虹** | `Del` | `F11` | |
+| **七彩虹** | `F2` / `Del` | `F11` | |
 
-> 看完了吗，相信你已经进BIOS了。其实科服盘里有**一键进入BISO.bat**
+> 看完了吗，相信你已经进BIOS了。其实科服盘里有**一键进入BIOS.bat**
 
-### 为了后续的操作顺手，建议改以下设置项
+为了后续的操作顺手，建议改以下设置项
 
-i. 安全启动（secure boot），一般在Advanced/Security/Boot等选项里去找。以华硕ROG Strix B250-F Gaming为例，进BIOS—Boot—Secure boot菜单下，进入key Management里，选择Clear Secure Boot keys，重启进BIOS即可看到Secure Boot已关闭  
+1. 安全启动（secure boot），一般在Advanced/Security/Boot等选项里去找。以华硕ROG Strix B250-F Gaming为例，进BIOS—Boot—Secure boot菜单下，进入key Management里，选择Clear Secure Boot keys，重启进BIOS即可看到Secure Boot已关闭  
+2. 关闭RST  
 
-ii. 关闭RST  
+## 关闭 RST / VMD
 
-## 各 OEM 关闭 RST / VMD / 将 RAID 改为 AHCI
+适用场景：  
 
-> 适用场景：  
+- 安装时看不到 NVMe / 硬盘  
+- 安装程序直接提示需关闭iRST
 
-> - 安装时看不到 NVMe / 硬盘  
-> - 安装程序直接提示需关闭iRST
+由于关闭RST可能导致Windows无法启动，所以要先在Windows中开启安全模式。具体操作步骤如下：
+
+1. 在Windows中，按下Win+R，输入msconfig，回车，选择引导选项卡，勾选安全引导，点击应用。
+2. 重启电脑，进入BIOS，根据下面的指引关闭RST
+3. 保存退出后，电脑会自动进入Windows安全模式。此时再打开msconfig，取消勾选安全引导，点击应用，重启电脑即可正常进入Windows系统。接下来即可继续安装步骤。
 
 ---
 
@@ -388,19 +383,25 @@ xxx
 
 ## 开始装Linux系统
 
-### 对于双系统, 一定要 先装 Win, 再装 Linux
+> 对于双系统, 一定要 先装 Win, 再装 Linux
 
-i）首先进入科服U盘后，你会看到一系列的ISO镜像，先选择进入FirePE或者WePE给磁盘分区
+### 分区
+
+首先进入科服U盘后，你会看到一系列的ISO镜像，先选择进入FirePE或者WePE给磁盘分区
 
 **询问好客户准备如何使用Linux系统，将原有磁盘分区挤出来一部分给Ubuntu来用**，使用DiskGenius对本地磁盘右键，选择缩小分区，选择合适的字节即可挤出一部分空闲分区
 
 ![DiskGenius划分分区](Linux/dg-divide-partition.png =600x)
 
-*需要注意的是, 我们进行分区操作的时候, 如果是 NTFS / ReFS, 则应该使用 Win PE / 磁盘管理 / DiskGenius 等工具进行操作; 如果是 Ext4 / Btrfs / XFS 等 Linux 文件系统, 则应该使用 Linux 里面的 GParted, resize2fs, btrfs filesystem resize 等方法操作. 不要在 Windows 里面操作 Linux 分区, 也不要在 Linux 里面操作 Windows 分区, 原因有二: 一方面, 那些会检查分区完整性的软件 (如 DiskGenius) 在操作 Ext4 的时候的检查比 fsck.ext4 更严格, 一个能通过 fsck 检查并用 resize2fs 成功扩展的分区, 可能在 DG 里面检查就不通过; 能通过 chksdk 的在 ntfsresize 里面也可能不通过; 另一方面, 即便检查通过, 这样操作导致文件系统损坏的风险也更高.*
+> 需要注意的是, 我们进行分区操作的时候, 如果是 NTFS / ReFS, 则应该使用 Win PE / 磁盘管理 / DiskGenius 等工具进行操作; 如果是 Ext4 / Btrfs / XFS 等 Linux 文件系统, 则应该使用 Linux 里面的 GParted, resize2fs, btrfs filesystem resize 等方法操作. **不要在 Windows 里面操作 Linux 分区, 也不要在 Linux 里面操作 Windows 分区**
+>
+> 原因有二: 一方面, 那些会检查分区完整性的软件 (如 DiskGenius) 在操作 Ext4 的时候的检查比 fsck.ext4 更严格, 一个能通过 fsck 检查并用 resize2fs 成功扩展的分区, 可能在 DG 里面检查就不通过; 能通过 chksdk 的在 ntfsresize 里面也可能不通过; 另一方面, 即便检查通过, 这样操作导致文件系统损坏的风险也更高.
 
-ii）分区结束后保存重启，回到科服U盘选镜像这一步，选择Ubuntu22或24，轻按键盘上的Enter键。  
-这时你会看到一个黑色底色，题头为GNU GRUB version 2.12的界面，有
-> **Try or Install Ubuntu** 等备选项
+### 进入安装镜像
+
+分区结束后保存重启，回到科服U盘选镜像这一步，选择Ubuntu22或24，轻按键盘上的Enter键。  
+
+这时你会看到一个黑色底色，题头为GNU GRUB version 2.12的界面，有 **Try or Install Ubuntu** 等备选项
 
 ![GRUB启动界面](Linux/grub-boot-menu.png =600x)
 
@@ -421,8 +422,11 @@ ii）分区结束后保存重启，回到科服U盘选镜像这一步，选择Ub
 - 修改后：`... nomodeset`
 - 按下`F10`键或`Ctrl + X`组合键启动进入 Ubuntu 安装界面
 
-iii）进入Ubuntu安装界面后，会弹出一个Try or Install Ubuntu的窗口，此时先退出安装程序————直接点击右上角的`X`关闭窗口，进入Live桌面环境。
+### 开始安装
+
+进入Ubuntu安装界面后，会弹出一个Try or Install Ubuntu的窗口，此时先退出安装程序————直接点击右上角的`X`关闭窗口，进入Live桌面环境。
 点击左下角的九宫格图标，找到并打开`GParted`分区工具，检查之前挤出的空闲分区是否存在，确认空闲分区标识（如nvme0n1p4），无误后关闭GParted。  
+
 > 注：在Linux系统中，硬盘设备通常以`/dev/`开头，后面跟随设备类型和编号。常见的设备命名规则如下：
 >
 >- /dev/sda, nvme0n1, vda分别代表不同类型的硬盘设备：
@@ -433,39 +437,38 @@ iii）进入Ubuntu安装界面后，会弹出一个Try or Install Ubuntu的窗�
 
 > p 后面的数字代表分区号，比如 /dev/sda1 是第一块硬盘的第一个分区，/dev/nvme0n1p4 是第一块 NVMe 硬盘的第四个分区。
 
-### 设备与根文件系统简介
+> **设备与根文件系统简介**
+>
+> 在 Linux 中，所有内容被抽象为一棵文件树，硬件设备也以文件的形式出现在 `/dev` 下。常见的设备命名规则：
+>
+> - `/dev/sdX`：SATA / USB 磁盘（例如 `/dev/sda`, `/dev/sdb`）
+> - `/dev/nvmeXnY`：NVMe 磁盘（例如 `/dev/nvme0n1`）
+> - `/dev/vdX`：VirtIO 虚拟磁盘（例如 `/dev/vda`）
+> - `p` 后面的数字表示分区号，例如 `/dev/sda1` 是第一块盘的第一个分区，`/dev/nvme0n1p4` 是第一块 NVMe 磁盘的第四个分区。
+>
+> 下面是根目录（`/`）下常见的一级目录及其用途，作为快速参考：
+>
+> - `/bin`：基础系统命令（现在通常为 `/usr/bin` 的链接）
+> - `/boot`：启动加载器与内核文件
+> - `/dev`：设备文件（表示硬件设备）
+> - `/etc`：系统配置文件
+> - `/home`：普通用户的家目录（如 `/home/username`）
+> - `/lib`：系统库文件和内核模块（常为 `/usr/lib` 的链接）
+> - `/media`：自动挂载的可移动设备（如 U 盘）
+> - `/mnt`：临时挂载点
+> - `/opt`：可选第三方软件
+> - `/proc`：虚拟文件系统，动态显示内核和进程信息
+> - `/root`：`root` 用户的家目录
+> - `/run`：运行时数据
+> - `/sbin`：系统管理命令（通常需要 root 权限）
+> - `/srv`：服务数据（例如网站文件）
+> - `/sys`：系统硬件信息（类似 `/proc`）
+> - `/tmp`：临时文件；重启后可能被清空
+> - `/usr`：用户程序和数据（如 `/usr/bin`）
+> - `/var`：可变数据（日志、邮件等）
 
-在 Linux 中，所有内容被抽象为一棵文件树，硬件设备也以文件的形式出现在 `/dev` 下。常见的设备命名规则：
+双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系统。
 
-- `/dev/sdX`：SATA / USB 磁盘（例如 `/dev/sda`, `/dev/sdb`）
-- `/dev/nvmeXnY`：NVMe 磁盘（例如 `/dev/nvme0n1`）
-- `/dev/vdX`：VirtIO 虚拟磁盘（例如 `/dev/vda`）
-- `p` 后面的数字表示分区号，例如 `/dev/sda1` 是第一块盘的第一个分区，`/dev/nvme0n1p4` 是第一块 NVMe 磁盘的第四个分区。
-
-下面是根目录（`/`）下常见的一级目录及其用途，作为快速参考：
-
-- `/bin`：基础系统命令（现在通常为 `/usr/bin` 的链接）
-- `/boot`：启动加载器与内核文件
-- `/dev`：设备文件（表示硬件设备）
-- `/etc`：系统配置文件
-- `/home`：普通用户的家目录（如 `/home/username`）
-- `/lib`：系统库文件和内核模块（常为 `/usr/lib` 的链接）
-- `/media`：自动挂载的可移动设备（如 U 盘）
-- `/mnt`：临时挂载点
-- `/opt`：可选第三方软件
-- `/proc`：虚拟文件系统，动态显示内核和进程信息
-- `/root`：`root` 用户的家目录
-- `/run`：运行时数据
-- `/sbin`：系统管理命令（通常需要 root 权限）
-- `/srv`：服务数据（例如网站文件）
-- `/sys`：系统硬件信息（类似 `/proc`）
-- `/tmp`：临时文件；重启后可能被清空
-- `/usr`：用户程序和数据（如 `/usr/bin`）
-- `/var`：可变数据（日志、邮件等）
-
-这部分内容便于在安装和分区时识别设备名与挂载点。
-
-iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系统。  
 按照安装向导的步骤进行操作：  
 
 1. 选择语言（English）
@@ -474,11 +477,11 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
 4. 选择不安装第三方软件（除非客户有特别需求）
 5. 选择安装类型：**选择“其他选项（Something else）”进行手动分区**  
 6. 在分区界面，选择之前挤出的空闲分区，点击`+`按钮创建新分区：
-![Ubuntu分区界面](Linux/ubuntu-partition-setup.png =600x)
+   ![Ubuntu分区界面](Linux/ubuntu-partition-setup.png =600x)
    - EFI 分区, 512MB, FAT32, 挂载点选择`/boot/efi`，标记为`EFI System Partition`.如果是双系统安装，EFI 分区直接用 Windows 的就行，不需要再创建新的EFI分区
    - 根分区（/）：建议大小至少20GB，文件系统选择`ext4`，挂载点选择`/`
-  ![Ubuntu创建分区](Linux/ubuntu-create-partition.png =600x)
-  ![Ubuntu挂载分区点](Linux/ubuntu-mount-points.png =600x)
+    ![Ubuntu创建分区](Linux/ubuntu-create-partition.png =600x)
+    ![Ubuntu挂载分区点](Linux/ubuntu-mount-points.png =600x)
    - 交换分区（swap）：建议大小为物理内存的1-2倍，如果客户的内存 16GB, 就放个 4GB，如果内存 32GB 及以上，可以不创建交换分区，直接用交换文件，或者给2GB即可
    - 其他分区（如/home）：根据客户需求创建
 
@@ -497,7 +500,7 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
 
 8. 点击`安装现在（Install Now）`，确认分区更改并继续
 
-## 用户设置
+### 用户设置
 
 搞完之后, Next, 接受风险, 分区, 然后就开始账户设置
 
@@ -520,7 +523,7 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
 **联网**：点击右上角的网络图标，选择 Wi-Fi 或有线连接，输入密码连接网络。
 
 1. 首先打开终端, 更新软件源和系统，修改为清华源:  
-  Ubuntu22及以下版本:
+    Ubuntu22及以下版本:
 
    ```bash
    sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak # 备份原 sources.list   
@@ -531,7 +534,7 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
 
    ```bash
    sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
-   ```  
+   ```
 
     Ubuntu24及以上版本:
 
@@ -548,7 +551,7 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
     Suites: noble noble-updates noble-backports
     Components: main restricted universe multiverse
     Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-
+    
     Types: deb
     URIs: http://security.ubuntu.com/ubuntu/
     Suites: noble-security
@@ -595,7 +598,7 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
 
    ```bash
    sudo apt purge package-name -y     # deb包卸载
-
+   
    sudo make uninstall   # 源码包卸载
    ```
 
