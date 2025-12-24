@@ -168,7 +168,7 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     一般来说，在原有的系统分区上进行安装即可。选中该磁盘，对目标磁盘进行删除分区、格式化分区操作后，点击“下一步”进行安装。
 
-    ![](Windows/image-16.png  =600x)
+![](Windows/image-16.png  =600x)
 
 - 安装程序将会进行安装，耐心等待即可。
 
@@ -184,7 +184,7 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     无论是设备名还是账户名，均推荐客户使用英文，以避免一些软件对中文名的兼容性问题。
 
-    ![](Windows/image-17.png  =600x)
+![](Windows/image-17.png  =600x)
 
 5. **重装之后**
    
@@ -195,20 +195,27 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     对于笔记本，有网卡驱动后，可以通过Windows Update进行自动更新，安装大部分驱动。
 
-        当无法联网的时候，可以通过如下方案来解决：
-        1. 装机盘中有完整版Snappy Driver Installer (SDI)，可采用该软件离线安装。（仅安装网卡驱动即可）
-        2. 确认电脑型号，队员代为下载官网驱动，U盘拷贝安装。
-        3. 采用有线网络连接。（部分电脑可能需要USB-网口转换器）
-    对于特定的机型，可以到官网下载安装相应的驱动程序。例如：
-        
-        联想:https://newsupport.lenovo.com.cn/driveDownloads_index.html
-        Dell:https://www.dell.com/support/home/zh-cn?app=drivers
-        华硕:https://www.asus.com.cn/support/myasus-deeplink/
+    - 当无法联网的时候，可以通过如下方案来解决：
+
+        - 装机盘中有完整版Snappy Driver Installer (SDI)，可采用该软件离线安装。（仅安装网卡驱动即可）
+        - 确认电脑型号，队员代为下载官网驱动，U盘拷贝安装。
+        - 采用有线网络连接。（部分电脑可能需要USB-网口转换器）
+
+    - 对于特定的机型，可以到官网下载安装相应的驱动程序。例如：    
+
+        - 联想: https://newsupport.lenovo.com.cn/driveDownloads_index.html
+
+        - Dell: https://www.dell.com/support/home/zh-cn?app=drivers
+
+
+        - 华硕: https://www.asus.com.cn/support/myasus-deeplink/
+
+
 - 激活Windows
-    
+
     清华大学信息化客户服务平台提供了[Windows 10]和[Windows 11]的激活脚本，可按照操作说明进行激活。[官网传送门,请选择”公共软件“](https://its.tsinghua.edu.cn/)
 
-        大部分笔记本电脑预装了家庭版的数字许可证，联网后会自动激活。
+    > 大部分笔记本电脑预装了家庭版的数字许可证，联网后会自动激活。
 
     ~~也可以和GPT聊聊自己外婆的故事，说不定它会给你一个激活码~~
     ![](Windows/image-19.png  =600x)
@@ -216,7 +223,8 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     建议更改时间服务器，使用清华大学TUNA协会提供的NTP
 
-        [控制面板] - [日期和时间] - [Internet时间] - [更改设置] - 输入 ntp.tuna.tsinghua.edu.cn - [立即更新] - [确定]
+    > [控制面板] - [日期和时间] - [Internet时间] - [更改设置] - 输入 ntp.tuna.tsinghua.edu.cn - [立即更新] - [确定]
+
     ![](Windows/image-18.png  =600x)
 
 - 若有需求，登录微软账户。
@@ -239,28 +247,27 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
    - 解除Bitlocker加密（如果有的话）
 2. 重装系统：
     - 使用DiskGenuis进行分区管理
-        
-            在进入WinPE后，打开DiskGenuis，确认目标磁盘内文件是否已经备份，随后对磁盘分区进行删除、格式化，以准备安装新的系统。
-            同样的，DiskGenuis也可以把新买来的硬盘进行分区，完成系统迁移等操作，也可以扩容磁盘。
-            （等待一个DiskGenuis使用教程，好让我超链接过去）
-            进入DiskGenuis时，如果是旧硬盘的系统盘，应该前面有两个小分区，分别是EFI分区和MSR分区，之后才是主要的Windows安装分区、数据分区，后面可能还有一个恢复分区。
-            通常，我们只格式化Windows安装分区，可选格式化EFI引导分区。
-            或者可以不格式化Windows分区直接安装，旧数据会被保存到Windows.old中（许多客户的C盘空间很紧张，不建议这么做）。
-        ![](Windows/image-20.png  =600x)
+      
+      在进入WinPE后，打开DiskGenuis，确认目标磁盘内文件是否已经备份，随后对磁盘分区进行删除、格式化，以准备安装新的系统。
+      同样的，DiskGenuis也可以把新买来的硬盘进行分区，完成系统迁移等操作，也可以扩容磁盘。
+      （等待一个DiskGenuis使用教程，好让我超链接过去）
+      进入DiskGenuis时，如果是旧硬盘的系统盘，应该前面有两个小分区，分别是EFI分区和MSR分区，之后才是主要的Windows安装分区、数据分区，后面可能还有一个恢复分区。通常，我们只格式化Windows安装分区，可选格式化EFI引导分区。
+      或者可以不格式化Windows分区直接安装，旧数据会被保存到Windows.old中（许多客户的C盘空间很紧张，不建议这么做）。
+       ![](Windows/image-20.png  =600x)
 
-            在格式化分区后，右键点击未分配的磁盘空间，选择“建立新分区”。如果是新硬盘，还可以指定系统分区的大小，以按照客户的需求进行分区。
-            操作结束后，保存更改，格式化分区即可。
+      在格式化分区后，右键点击未分配的磁盘空间，选择“建立新分区”。如果是新硬盘，还可以指定系统分区的大小，以按照客户的需求进行分区。
+      操作结束后，保存更改，格式化分区即可。
+      
+    - 使用Dism++进行系统重装
     
-   - 使用Dism++进行系统重装
-  
-            打开Dism++，选择"恢复功能"-"系统还原"选项卡，弹出“释放镜像”窗口。通过浏览挂载所需要的映像和要安装的版本。
-        ![](Windows/image-22.png  =600x)
-        
-            通过浏览，选择目标分区（刚刚用DiskGenuis格式化的分区），选择“添加引导”（必须）和“格式化”选项，点击“确定”按钮，
-        ![](Windows/image-23.png  =600x)
-
-        系统将会开始释放镜像，耐心等待即可。
-  
+      打开Dism++，选择"恢复功能"-"系统还原"选项卡，弹出“释放镜像”窗口。通过浏览挂载所需要的映像和要安装的版本。
+       ![](Windows/image-22.png  =600x)
+      
+      通过浏览，选择目标分区（刚刚用DiskGenuis格式化的分区），选择“添加引导”（必须）和“格式化”选项，点击“确定”按钮，
+       ![](Windows/image-23.png  =600x)
+    
+      系统将会开始释放镜像，耐心等待即可。
+   
 3. 重装之后：
     - 安装驱动程序
     - 激活Windows
@@ -279,32 +286,30 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
 
 - 无法关闭Secure Boot：
 
-        新的Ventoy启动盘已经支持Secure Boot，但需按照官网教程(https://www.ventoy.net/cn/doc_secure.html)操作，才能正常引导U盘。
+    新的Ventoy启动盘已经支持Secure Boot，但需按照官网教程(https://www.ventoy.net/cn/doc_secure.html)操作，才能正常引导U盘。
 
 - RST问题
 
-        如果遇到无法识别硬盘，或者新系统蓝屏Inaccessible boot device的问题，可能是由于Intel RST（Rapid Storage Technology）引起的。RST是一种存储技术，但需要特定的控制器驱动且Windows并不自带，因而会导致系统无法正确识别硬盘。
+    - 如果遇到无法识别硬盘，或者新系统蓝屏Inaccessible boot device的问题，可能是由于Intel RST（Rapid Storage Technology）引起的。RST是一种存储技术，但需要特定的控制器驱动且Windows并不自带，因而会导致系统无法正确识别硬盘。
+    - 解决方法：
+        - 进入BIOS，找到SATA模式设置，将其从RAID或RST模式更改为AHCI模式。
+        - 使用安装程序安装系统时，手动加载RST 驱动
+        - 使用较新的PE安装系统，且在安装后注入RST 驱动
+            RST驱动下载地址：https://www.intel.cn/content/www/cn/zh/download-center/home.html。装机盘中已有此驱动（极少数机型会使用老的Optane驱动，如果遇到安装了我们的驱动而仍无法读到硬盘/进入系统的情况，请从机型官网下载驱动）。
+            ![](Windows/image-24.png  =600x)
 
-        解决方法：
-        1. 进入BIOS，找到SATA模式设置，将其从RAID或RST模式更改为AHCI模式。
-        2. 使用安装程序安装系统时，手动加载RST 驱动
-        3. 使用较新的PE安装系统，且在安装后注入RST 驱动
-        RST驱动下载地址：https://www.intel.cn/content/www/cn/zh/download-center/home.html。装机盘中已有此驱动（极少数机型会使用老的Optane驱动，如果遇到安装了我们的驱动而仍无法读到硬盘/进入系统的情况，请从机型官网下载驱动）。
-    ![](Windows/image-24.png  =600x)
 
 - Bitlocker问题
 
-        如果硬盘启用了Bitlocker加密，建议在重装系统前先解除Bitlocker加密，以避免数据丢失的风险。
-        命令行关闭（管理员）：manage-bde –off C:（其余分区同理，请全部关闭）。也可以直接在系统设置中搜索“设备加密”（Win11）或“Bitlocker”（Win10）关闭。
-        如果没有关闭BitLocker，那么在重装系统后，会遇到需要密钥才能访问硬盘的情况。如果客户不知道自己的Bitlocker密钥，但此前登录了微软账户，那么可以通过微软账户找回：account.microsoft.com/devices/recoverykey
+  如果硬盘启用了Bitlocker加密，建议在重装系统前先解除Bitlocker加密，以避免数据丢失的风险。
+  命令行关闭（管理员）：manage-bde –off C:（其余分区同理，请全部关闭）。也可以直接在系统设置中搜索“设备加密”（Win11）或“Bitlocker”（Win10）关闭。
+  如果没有关闭BitLocker，那么在重装系统后，会遇到需要密钥才能访问硬盘的情况。如果客户不知道自己的Bitlocker密钥，但此前登录了微软账户，那么可以通过微软账户找回：account.microsoft.com/devices/recoverykey
 
 - Windows11专属问题
+  - Windows11对硬件要求较高，部分老旧设备可能不支持Windows11，建议在安装前确认设备是否符合Windows11的最低硬件要求。
+  - Windows11安装后不允许离线账户设置或者创建本地账户，在OOBE界面Shift+F10打开CMD，输入OOBE\BYPASSNRO并回车，重启后即可离线设置
+  - 也可以通过Ventoy绕过
 
-        Windows11对硬件要求较高，部分老旧设备可能不支持Windows11，建议在安装前确认设备是否符合Windows11的最低硬件要求。
-
-        偶尔，Windows11安装后不允许离线账户设置或者创建本地账户，在OOBE界面Shift+F10打开CMD，输入OOBE\BYPASSNRO并回车，重启后即可离线设置
-
-        只不过通过Ventoy都可以绕过，至少我是没见过出现这种问题的（
 
 ## 参考资料
 本教程基于多位同学及互联网上的重装技术培训资料改编而成，特此致谢：
