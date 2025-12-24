@@ -81,20 +81,20 @@ DiskGenuis告诉我们：**数据无价，谨慎操作**
 保留我的文件：删除应用和设置，但保留个人文件。
 
 删除所有内容：删除所有个人文件、应用和设置。
-![alt text])/Windows/image-1.png)
+![alt text](/Windows/image-1.png)
 
 点击更改设置后，可以对重置选项进行进一步的配置：
-![alt text])/Windows/image-2.png)
+![alt text](/Windows/image-2.png)
 
 清理数据：建议勾选清理数据，可以彻底清理系统问题。
 
 删除所有驱动器文件：字面意思，勾选后会删除所有分区的数据，慎用。
 
-![alt text])/Windows/image-3.png)
+![alt text](/Windows/image-3.png)
 
 准备就绪后，确认各项设置，点击“重置”按钮，系统将会自动进行重装。
 
-![alt text])/Windows/image-4.png)
+![alt text](/Windows/image-4.png)
 
 #### 通过WinRE重置系统
 
@@ -104,7 +104,7 @@ DiskGenuis告诉我们：**数据无价，谨慎操作**
 
 在WinRE（蓝屏）环境下，选择高级选项-疑难解答-重置此电脑，之后的步骤与上述类似，一般这种方法用到的不多。
 
-![alt text])/Windows/image-8.png)
+![alt text](/Windows/image-8.png)
 
 #### 系统内覆盖安装
 Media Creation Tool是微软官方提供的一个工具，可以帮助客户下载最新的Windows系统镜像，并创建可启动的安装介质（如U盘或DVD）。
@@ -115,9 +115,9 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
 友情提醒：**微软的服务器非常慢，所以不如直接上PE**
 
-![alt text])/Windows/image-9.png)
+![alt text](/Windows/image-9.png)
 
-![alt text])/Windows/image-10.png)
+![alt text](/Windows/image-10.png)
 
 
 ### 方式2：使用安装媒体重新安装系统
@@ -139,23 +139,23 @@ https://www.microsoft.com/zh-cn/software-download/windows11
     随后在BIOS中修改启动项，按需求关闭Secure Boot，将“USB Device”或U盘名称移至首位（可能包含U盘品牌字样），随后保存设置并退出BIOS。
     
     （图源：https://blog.csdn.net/m0_72028202/article/details/143276086）
-    ![alt text])/Windows/image-5.png)
-    ![alt text])/Windows/image-6.png)
-    ![alt text])/Windows/image-7.png)
+    ![alt text](/Windows/image-5.png)
+    ![alt text](/Windows/image-6.png)
+    ![alt text](/Windows/image-7.png)
 
 2. **U盘引导**
 
     重启之后，电脑将会从U盘启动，进入Windows安装界面。选择需要安装的Windows 11镜像（通常是64位中文版）,随后选择 Boot In Normal Mode 进入安装程序。
     
     当然，也可以按需求安装Win10、Win8、Win7、~~WinXP、Win Vista~~
-    ![alt text])/Windows/image-13.png)
-    ![alt text])/Windows/image-14.png)
+    ![alt text](/Windows/image-13.png)
+    ![alt text](/Windows/image-14.png)
 3. **安装过程**(没有出现的步骤可以跳过)
    
 - 选择语言、时间和键盘布局，点击“下一步”。
 - 选择重新安装Windows 11
 - 输入产品密钥（如果有），或者选择“我没有产品密钥”以后再激活。
-  ![alt text])/Windows/image-15.png)
+  ![alt text](/Windows/image-15.png)
 - 选择Windows版本（如果适用），点击“下一步”。
   
      不同版本之间的区别？
@@ -170,7 +170,7 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     一般来说，在原有的系统分区上进行安装即可。选中该磁盘，对目标磁盘进行删除分区、格式化分区操作后，点击“下一步”进行安装。
 
-    ![alt text])/Windows/image-16.png)
+    ![alt text](/Windows/image-16.png)
 
 - 安装程序将会进行安装，耐心等待即可。
 
@@ -182,7 +182,7 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     无论是设备名还是账户名，均推荐客户使用英文，以避免一些软件对中文名的兼容性问题。
 
-    ![alt text])/Windows/image-17.png)
+    ![alt text](/Windows/image-17.png)
 
 5. **重装之后**
    
@@ -211,13 +211,13 @@ https://www.microsoft.com/zh-cn/software-download/windows11
         当然，你也可以使用MassGrave等工具进行激活，或者上网找一个激活码(bushi)
 
     ~~也可以和GPT聊聊自己外婆的故事，说不定它会给你一个激活码~~
-    ![alt text])/Windows/image-19.png)
+    ![alt text](/Windows/image-19.png)
 - 更改时间服务器：
 
     建议更改时间服务器，使用清华大学TUNA协会提供的NTP
 
         [控制面板] - [日期和时间] - [Internet时间] - [更改设置] - 输入 ntp.tuna.tsinghua.edu.cn - [立即更新] - [确定]
-    ![alt text])/Windows/image-18.png)
+    ![alt text](/Windows/image-18.png)
 
 - 登录微软账户
 
@@ -247,7 +247,7 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
             将这几个分区（EFI、MSR，原来的系统盘）全部删除，磁盘就会显示为空闲，其后的操作就和新硬盘一样了。
             当然，如果你清楚自己在做什么的话，也可以只格式化Windows安装分区，保留引导分区并且通过映像文件安装。
             或者可以不格式化Windows分区直接安装，旧数据会被保存到Windows.old中
-        ![alt text])/Windows/image-20.png)
+        ![alt text](/Windows/image-20.png)
 
             在格式化分区后，右键点击未分配的磁盘空间，选择“建立新分区”。如果是新硬盘，还可以指定系统分区的大小，以按照客户的需求进行分区。
             操作结束后，保存更改，格式化分区即可。
@@ -255,10 +255,10 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
    - 使用Dism++进行系统重装
   
             打开Dism++，选择"恢复功能"-"系统还原"选项卡，弹出“释放镜像”窗口。通过浏览挂载所需要的映像和要安装的版本。
-        ![alt text])/Windows/image-22.png)
+        ![alt text](/Windows/image-22.png)
         
             通过浏览，选择目标分区（刚刚用DiskGenuis格式化的分区），选择“添加引导”和“格式化”选项（必须），点击“确定”按钮，
-        ![alt text])/Windows/image-23.png)
+        ![alt text](/Windows/image-23.png)
 
         系统将会开始释放镜像，耐心等待即可。
   
@@ -274,7 +274,7 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
 
 此处，放上hzw同学总结的一图流：
 
-![alt text])/Windows/image-25.png)
+![alt text](/Windows/image-25.png)
 
 ## 常见BUG指引：
 - 无法关闭Secure Boot：
@@ -290,7 +290,7 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
         2. 使用安装程序安装系统时，手动加载RST 驱动
         3. 使用较新的PE安装系统，且在安装后注入RST 驱动
         RST驱动下载地址：https://www.intel.cn/content/www/cn/zh/download-center/home.html
-    ![alt text])/Windows/image-24.png)
+    ![alt text](/Windows/image-24.png)
 
 - Bitlocker问题
 
