@@ -16,27 +16,15 @@ Linux 指基于 Linux 内核的一整套操作系统，通常称为：
 
 常见的有：
 
-- **Debian 系**（最常见）  
-  - Debian  
-  - Ubuntu（及衍生：Linux Mint）  
-  - Kali Linux  
-  - Raspbian（树莓派）
+- **Debian 系**（最常见）：Debian、Ubuntu（及衍生：Linux Mint）、Kali Linux、Raspbian（树莓派）
 
-- **Red Hat 系**（企业级）  
-  - RHEL  
-  - CentOS  
-  - Fedora
+- **Red Hat 系**（企业级）：RHEL、CentOS、Fedora
 
-- **SUSE 系**（企业级）  
-  - openSUSE  
-  - SUSE Linux Enterprise
+- **SUSE 系**（企业级）：openSUSE、SUSE Linux Enterprise
 
-- **Arch 系**（小药娘系）  
-  - Arch Linux  
-  - Manjaro
+- **Arch 系** ~~（小药娘系）~~：Arch Linux、Manjaro
 
-- **AOSP 系**  
-  - Android（Linux内核）
+- **AOSP 系**：Android（Linux内核）
 
 - **OpenWRT**（路由器用）
 
@@ -235,38 +223,15 @@ Ubuntu：
 
 ### 24.04.3 系列（当前 LTS）
 
-- 24.04.3 (amd64, Server)
-- 24.04.3 (amd64, Desktop LiveDVD)
-- 24.04.3 (ppc64el, Server)
-- 24.04.3 (s390x, Server)
-- 24.04.3 (riscv64, Server)
-- 24.04.3 (arm64, Server)
-- 24.04.3 (arm64+largemem, Server)
-- 24.04.3 (riscv64+unmatched, Preinstalled Server)
-- 24.04.3 (riscv64+jh7110, Preinstalled Server)
-- 24.04.3 (arm64+raspi, Preinstalled Server)
-- 24.04.3 (riscv64+pic64gx, Preinstalled Server)
-- 24.04.3 (riscv64+licheerv, Preinstalled Server)
-- 24.04.3 (riscv64, Preinstalled Server)
-- 24.04.3 (riscv64+icicle, Preinstalled Server)
-- 24.04.3 (riscv64+nezha, Preinstalled Server)
-- 24.04.3 (arm64+raspi, Preinstalled Desktop)
+![Ubuntu24.04.3系列](Linux/tuna-ubuntu-images.png =600x)
 
-![Ubuntu24.04.3系列](Linux/tuna-ubuntu-images.png)
-
-> 对我们来说，最后只剩 **24.04.3 (amd64, Desktop LiveDVD)**，这就是我们要的：
+> 对我们来说，通常选择的镜像为**24.04.3 (amd64, Desktop LiveDVD)**：
 >
 > - `amd64`：x86-64 架构  
 > - `Desktop`：桌面版  
 > - `LiveDVD`：可以直接从光盘 / U 盘启动  
 >
 > `24.04` 是大版本，`.3` 是小版本。越新越好：预装软件更新，装完之后需要升级的东西就越少。
-
-### 22.04.5 系列（上一代 LTS）
-
-- 22.04.5 (amd64, Server)
-- 22.04.5 (amd64, Desktop LiveDVD)
-
 ---
 
 ## 检查客户的电脑是哪年的
@@ -359,8 +324,9 @@ Ubuntu：
 | **神舟 HASEE** | `F2` / `Del` | `F7` / `F12` | 主板差异大 |
 | **机械革命** | `F2` | `F12` | |
 | **雷神 / 未来人类** | `F2` | `F12` | 模具机居多 |
+| **七彩虹** | `Del` | `F11` | |
 
->看完了吗，相信你已经进BIOS了。其实科服盘里有**一键进入BISO.bat**
+> 看完了吗，相信你已经进BIOS了。其实科服盘里有**一键进入BISO.bat**
 
 ### 为了后续的操作顺手，建议改以下设置项
 
@@ -368,13 +334,12 @@ i. 安全启动（secure boot），一般在Advanced/Security/Boot等选项里�
 
 ii. 关闭RST  
 
-## 各 OEM 关闭 RST / VMD / 将 RAID 改为 AHCI 速查表
+## 各 OEM 关闭 RST / VMD / 将 RAID 改为 AHCI
 
 > 适用场景：  
 
-> - Linux 安装看不到 NVMe / 硬盘  
-> - 安装器提示 **No disks found**  
-> - Intel 平台默认开启了 RST / VMD / RAID
+> - 安装时看不到 NVMe / 硬盘  
+> - 安装程序直接提示需关闭iRST
 
 ---
 
@@ -429,7 +394,7 @@ i）首先进入科服U盘后，你会看到一系列的ISO镜像，先选择进
 
 **询问好客户准备如何使用Linux系统，将原有磁盘分区挤出来一部分给Ubuntu来用**，使用DiskGenius对本地磁盘右键，选择缩小分区，选择合适的字节即可挤出一部分空闲分区
 
-![DiskGenius划分分区](Linux/dg-divide-partition.png)
+![DiskGenius划分分区](Linux/dg-divide-partition.png =600x)
 
 *需要注意的是, 我们进行分区操作的时候, 如果是 NTFS / ReFS, 则应该使用 Win PE / 磁盘管理 / DiskGenius 等工具进行操作; 如果是 Ext4 / Btrfs / XFS 等 Linux 文件系统, 则应该使用 Linux 里面的 GParted, resize2fs, btrfs filesystem resize 等方法操作. 不要在 Windows 里面操作 Linux 分区, 也不要在 Linux 里面操作 Windows 分区, 原因有二: 一方面, 那些会检查分区完整性的软件 (如 DiskGenius) 在操作 Ext4 的时候的检查比 fsck.ext4 更严格, 一个能通过 fsck 检查并用 resize2fs 成功扩展的分区, 可能在 DG 里面检查就不通过; 能通过 chksdk 的在 ntfsresize 里面也可能不通过; 另一方面, 即便检查通过, 这样操作导致文件系统损坏的风险也更高.*
 
@@ -437,9 +402,9 @@ ii）分区结束后保存重启，回到科服U盘选镜像这一步，选择Ub
 这时你会看到一个黑色底色，题头为GNU GRUB version 2.12的界面，有
 > **Try or Install Ubuntu** 等备选项
 
-![GRUB启动界面](Linux/grub-boot-menu.png)
+![GRUB启动界面](Linux/grub-boot-menu.png =600x)
 
-首先我们要设置`nomodeset`参数以防止显卡驱动问题导致无法进入安装界面（此修改仅用于本次启动，不会保存）。
+可能需要设置`nomodeset`参数以防止显卡驱动问题导致无法进入安装界面（此修改仅用于本次启动，不会保存）。
 
 **操作步骤：**
 
@@ -509,26 +474,26 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
 4. 选择不安装第三方软件（除非客户有特别需求）
 5. 选择安装类型：**选择“其他选项（Something else）”进行手动分区**  
 6. 在分区界面，选择之前挤出的空闲分区，点击`+`按钮创建新分区：
-![Ubuntu分区界面](Linux/ubuntu-partition-setup.png)
+![Ubuntu分区界面](Linux/ubuntu-partition-setup.png =600x)
    - EFI 分区, 512MB, FAT32, 挂载点选择`/boot/efi`，标记为`EFI System Partition`.如果是双系统安装，EFI 分区直接用 Windows 的就行，不需要再创建新的EFI分区
    - 根分区（/）：建议大小至少20GB，文件系统选择`ext4`，挂载点选择`/`
-  ![Ubuntu创建分区](Linux/ubuntu-create-partition.png)
-  ![Ubuntu挂载分区点](Linux/ubuntu-mount-points.png)
+  ![Ubuntu创建分区](Linux/ubuntu-create-partition.png =600x)
+  ![Ubuntu挂载分区点](Linux/ubuntu-mount-points.png =600x)
    - 交换分区（swap）：建议大小为物理内存的1-2倍，如果客户的内存 16GB, 就放个 4GB，如果内存 32GB 及以上，可以不创建交换分区，直接用交换文件，或者给2GB即可
    - 其他分区（如/home）：根据客户需求创建
 
    最后应该如图所示：
-   ![Ubuntu分区完成示例](Linux/ubuntu-partition-complete-example.png)
+   ![Ubuntu分区完成示例](Linux/ubuntu-partition-complete-example.png =600x)
 7. 如果客户的磁盘上已经有分区表, 选中磁盘, 点 “New Partition Table” (新建分区表);  
-![Ubuntu新建分区表](Linux/ubuntu-new-partition-table.png)
+![Ubuntu新建分区表](Linux/ubuntu-new-partition-table.png =600x)
 点一下底下的 “Device for Bootloader Installation” 选项, 选中你要装系统的硬盘 (不是分区, 是整个硬盘). 此时安装工具会自动帮你建立一个 EFI 分区.
-![Ubuntu选择引导安装位置](Linux/ubuntu-bootloader-installation-device.png)
+![Ubuntu选择引导安装位置](Linux/ubuntu-bootloader-installation-device.png =600x)
 可以点击这个分区然后点 “Change” 改大小和挂载点为 `/boot/efi`。如果你已经手动创建了 EFI 分区, 那么这里就选中你刚才创建的那个 EFI 分区即可.
 
 >冷知识: ubuntu的安装程序只接受在第一个flag为boot esp的分区上安装引导: 要指定安装的分区需要先把原本esp分区的flag去掉: 并手动在目标esp分区上添加flag（）
 >同时又因为os-probe似乎只搜索带flag的分区: 所以在开始安装后需要再把原esp的flag加上: 以免grub里没有windows（）
 
-![Ubuntu修改分区flag](Linux/ubuntu-change-partition-flag.png)
+![Ubuntu修改分区flag](Linux/ubuntu-change-partition-flag.png =600x)
 
 8. 点击`安装现在（Install Now）`，确认分区更改并继续
 
@@ -542,7 +507,7 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
 - Password: 密码, 建议复杂一点
 - Require my password to log in: 每次开机都需要密码登录
 - ~~Log in automatically: 自动登录，不需要密码~~  
-![Ubuntu用户设置](Linux/ubuntu-user-setup.png)
+![Ubuntu用户设置](Linux/ubuntu-user-setup.png =600x)
 
 ### 时区设置
 
@@ -596,7 +561,7 @@ iv）双击桌面上的`Install Ubuntu 24.04 LTS`图标，开始安装Ubuntu系�
     ```
 
 2. 安装NVIDIA驱动（如果有NVIDIA显卡）
-点击左下角的九宫格图标，         搜索并打开`Software Upadter（软件和更新）`，切换到`Additional Drviers（附加驱动）`选项卡，选择nvidia-open-xxx，点击`应用更改`进行安装。安装完成后，重启电脑使驱动生效。
+点击左下角的九宫格图标，搜索并打开`Software Upadter（软件和更新）`，切换到`Additional Drviers（附加驱动）`选项卡，选择nvidia-open-xxx，点击`应用更改`进行安装。安装完成后，重启电脑使驱动生效。
 
 3. 重启电脑，检查驱动是否安装成功
 
