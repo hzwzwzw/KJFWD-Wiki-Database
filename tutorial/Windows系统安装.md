@@ -295,7 +295,7 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
         - 进入BIOS，找到SATA模式设置，将其从RAID或RST模式更改为AHCI模式。
         - 使用安装程序安装系统时，手动加载RST 驱动
         - 使用较新的PE安装系统，且在安装后注入RST 驱动
-            RST驱动下载地址：https://www.intel.cn/content/www/cn/zh/download-center/home.html。装机盘中已有此驱动（极少数机型会使用老的Optane驱动，如果遇到安装了我们的驱动而仍无法读到硬盘/进入系统的情况，请从机型官网下载驱动）。
+            RST驱动下载地址：https://www.intel.cn/content/www/cn/zh/download-center/home.html。 装机盘中已有此驱动（极少数机型会使用老的Optane驱动，如果遇到安装了我们的驱动而仍无法读到硬盘/进入系统的情况，请从机型官网下载驱动）。
             ![](Windows/image-24.png  =600x)
 
 
