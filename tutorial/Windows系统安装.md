@@ -78,20 +78,20 @@ Windows系统在使用中可能会出现各种问题，如蓝屏报错，注册�
 保留我的文件：删除应用和设置，但保留个人文件。
 
 删除所有内容：删除所有个人文件、应用和设置。
-![](Windows/image-1.png)
+![](Windows/image-1.png  =600x)
 
 点击更改设置后，可以对重置选项进行进一步的配置：
-![](Windows/image-2.png)
+![](Windows/image-2.png  =600x)
 
 清理数据：建议勾选清理数据，可以彻底清理系统问题。
 
 删除所有驱动器文件：字面意思，勾选后会删除所有分区的数据，慎用。
 
-![](Windows/image-3.png)
+![](Windows/image-3.png  =600x)
 
 准备就绪后，确认各项设置，点击“重置”按钮，系统将会自动进行重装。
 
-![](Windows/image-4.png)
+![](Windows/image-4.png  =600x)
 
 #### 通过WinRE重置系统
 
@@ -101,7 +101,7 @@ Windows系统在使用中可能会出现各种问题，如蓝屏报错，注册�
 
 在WinRE（蓝屏）环境下，选择高级选项-疑难解答-重置此电脑，之后的步骤与上述类似，一般这种方法用到的不多。
 
-![](Windows/image-8.png)
+![](Windows/image-8.png  =600x)
 
 #### 系统内覆盖安装
 
@@ -113,9 +113,9 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
 友情提醒：**微软的服务器非常慢，所以不如直接上PE**
 
-![](Windows/image-9.png)
+![](Windows/image-9.png  =600x)
 
-![](Windows/image-10.png)
+![](Windows/image-10.png  =600x)
 
 
 ### 方式2：使用安装媒体重新安装系统
@@ -137,23 +137,23 @@ https://www.microsoft.com/zh-cn/software-download/windows11
     随后在BIOS中修改启动项，按需求关闭Secure Boot，将“USB Device”或U盘名称移至首位（可能包含U盘品牌字样），随后保存设置并退出BIOS。
     
     （图源：https://blog.csdn.net/m0_72028202/article/details/143276086）
-    ![](Windows/image-5.png)
-    ![](Windows/image-6.png)
-    ![](Windows/image-7.png)
+    ![](Windows/image-5.png  =600x)
+    ![](Windows/image-6.png  =600x)
+    ![](Windows/image-7.png  =600x)
 
 2. **U盘引导**
 
     重启之后，电脑将会从U盘启动，进入Windows安装界面。选择需要安装的Windows 11镜像（通常是64位中文版）,随后选择 Boot In Normal Mode 进入安装程序。
     
     当然，也可以按需求安装Win10、~~Win8、Win7、WinXP、Win Vista~~
-    ![](Windows/image-13.png)
-    ![](Windows/image-14.png)
+    ![](Windows/image-13.png  =600x)
+    ![](Windows/image-14.png  =600x)
 3. **安装过程**(没有出现的步骤可以跳过)
    
 - 选择语言、时间和键盘布局，点击“下一步”。
 - 选择重新安装Windows 11
 - 输入产品密钥（如果有），或者选择“我没有产品密钥”以后再激活。
-  ![](Windows/image-15.png)
+  ![](Windows/image-15.png  =600x)
 - 选择Windows版本（如果适用），点击“下一步”。
   
      不同版本之间的区别？
@@ -168,7 +168,7 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     一般来说，在原有的系统分区上进行安装即可。选中该磁盘，对目标磁盘进行删除分区、格式化分区操作后，点击“下一步”进行安装。
 
-    ![](Windows/image-16.png)
+    ![](Windows/image-16.png  =600x)
 
 - 安装程序将会进行安装，耐心等待即可。
 
@@ -184,7 +184,7 @@ https://www.microsoft.com/zh-cn/software-download/windows11
 
     无论是设备名还是账户名，均推荐客户使用英文，以避免一些软件对中文名的兼容性问题。
 
-    ![](Windows/image-17.png)
+    ![](Windows/image-17.png  =600x)
 
 5. **重装之后**
    
@@ -211,13 +211,13 @@ https://www.microsoft.com/zh-cn/software-download/windows11
         大部分笔记本电脑预装了家庭版的数字许可证，联网后会自动激活。
 
     ~~也可以和GPT聊聊自己外婆的故事，说不定它会给你一个激活码~~
-    ![](Windows/image-19.png)
+    ![](Windows/image-19.png  =600x)
 - 更改时间服务器：
 
     建议更改时间服务器，使用清华大学TUNA协会提供的NTP
 
         [控制面板] - [日期和时间] - [Internet时间] - [更改设置] - 输入 ntp.tuna.tsinghua.edu.cn - [立即更新] - [确定]
-    ![](Windows/image-18.png)
+    ![](Windows/image-18.png  =600x)
 
 - 若有需求，登录微软账户。
 
@@ -246,7 +246,7 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
             进入DiskGenuis时，如果是旧硬盘的系统盘，应该前面有两个小分区，分别是EFI分区和MSR分区，之后才是主要的Windows安装分区、数据分区，后面可能还有一个恢复分区。
             通常，我们只格式化Windows安装分区，可选格式化EFI引导分区。
             或者可以不格式化Windows分区直接安装，旧数据会被保存到Windows.old中（许多客户的C盘空间很紧张，不建议这么做）。
-        ![](Windows/image-20.png)
+        ![](Windows/image-20.png  =600x)
 
             在格式化分区后，右键点击未分配的磁盘空间，选择“建立新分区”。如果是新硬盘，还可以指定系统分区的大小，以按照客户的需求进行分区。
             操作结束后，保存更改，格式化分区即可。
@@ -254,10 +254,10 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
    - 使用Dism++进行系统重装
   
             打开Dism++，选择"恢复功能"-"系统还原"选项卡，弹出“释放镜像”窗口。通过浏览挂载所需要的映像和要安装的版本。
-        ![](Windows/image-22.png)
+        ![](Windows/image-22.png  =600x)
         
             通过浏览，选择目标分区（刚刚用DiskGenuis格式化的分区），选择“添加引导”（必须）和“格式化”选项，点击“确定”按钮，
-        ![](Windows/image-23.png)
+        ![](Windows/image-23.png  =600x)
 
         系统将会开始释放镜像，耐心等待即可。
   
@@ -273,7 +273,7 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
 
 此处，放上hzw同学总结的一图流：
 
-![](Windows/image-25.png)
+![](Windows/image-25.png  =600x)
 
 ## 常见问题指引：
 
@@ -290,7 +290,7 @@ WinPE是一种轻量级的Windows预安装环境，适用于系统维护和安�
         2. 使用安装程序安装系统时，手动加载RST 驱动
         3. 使用较新的PE安装系统，且在安装后注入RST 驱动
         RST驱动下载地址：https://www.intel.cn/content/www/cn/zh/download-center/home.html。装机盘中已有此驱动（极少数机型会使用老的Optane驱动，如果遇到安装了我们的驱动而仍无法读到硬盘/进入系统的情况，请从机型官网下载驱动）。
-    ![](Windows/image-24.png)
+    ![](Windows/image-24.png  =600x)
 
 - Bitlocker问题
 
